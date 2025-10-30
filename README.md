@@ -8,8 +8,8 @@ To set up this project on your local system, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/Cert-POC.git
-   cd Cert-POC
+   git clone https://github.com/GauravASY/IPSec_Tunnel_Agent.git
+   cd IPSec_Tunnel_Agent
    ```
 
 2. **Create a virtual environment:**
