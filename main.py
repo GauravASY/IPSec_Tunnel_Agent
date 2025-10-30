@@ -2,13 +2,16 @@ import gradio as gr
 from langchain_core.messages import HumanMessage, SystemMessage
 import requests
 import json
+import os
+from dotenv import load_dotenv
 
 
 analysing_system_prompt = """You are a log analysis expert. Your task is to analyze the provided system logs and identify any anomalies, errors, or noteworthy patterns. 
 Provide a concise summary of your findings along with any recommendations for further investigation or action. Provide the results in bullet points for clarity."""
 
-API_URL = "https://litellm-litemaas.apps.prod.rhoai.rh-aiservices-bu.com/v1/chat/completions"
-API_TOKEN = "sk-LszPuMF92HVEMDjhYO4KEQ"
+API_URL = os.getenv("API_URL")
+API_TOKEN = os.getenv("API_TOKEN")
+
 
 def log_analyser(logs):
     messages = [
@@ -83,6 +86,7 @@ def log_analyser(logs):
         return "Error occurred while processing the request."
 
 def main():
+    load_dotenv()
     with gr.Blocks(theme=gr.themes.Glass()) as demo:
         gr.Markdown("# Log Analysis POC")
         inp = gr.Textbox(placeholder="Enter the system logs here", label="System Logs", lines=1, max_lines=10)
